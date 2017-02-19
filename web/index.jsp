@@ -11,6 +11,22 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+    <script>
+      fetch("/music").then(function(res) {
+        // res instanceof Response == true.
+        if (res.ok) {
+          res.json().then(function(data) {
+            debugger;
+
+
+            console.log(data.entries);
+          });
+        } else {
+          console.log("Looks like the response wasn't perfect, got status", res.status);
+        }
+      }, function(e) {
+        console.log("Fetch failed!", e);
+      });
+    </script>
   </body>
 </html>

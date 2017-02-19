@@ -31,6 +31,9 @@ public class NetEaseService implements MusicService {
     }
 
     public static void main(String[] args) {
+        // musicId :5412546
+        // 5863695511113457
+
         System.out.printf(new NetEaseService().getDownloadUrl("5412546", ""));
     }
 }

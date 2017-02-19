@@ -31,7 +31,7 @@ public class NetEaseUtil {
     final static private String nonce = "0CoJUm6Qyw8W8jud";
     final static private String pubKey = "010001";
 
-    public static String GetEnHtml(String url, JSONObject object, boolean needCookie) {
+    public static String GetEncHtml(String url, JSONObject object, boolean needCookie) {
         return GetEncHtml(url, object.toJSONString(), needCookie);
     }
 
@@ -224,12 +224,18 @@ public class NetEaseUtil {
         System.out.println(text);
         String s = null;
         s = NetEaseUtil.GetEncHtml("http://music.163.com/weapi/cloudsearch/get/web?csrf_token=", text, true);
-        System.out.printf(s);
+        System.out.println(s);
         JSONObject jsonResult= JSONObject.parseObject(s).getJSONObject("result");
-        System.out.printf(jsonResult.toJSONString());
+       // System.out.printf(jsonResult.toJSONString());
         if (jsonResult.getInteger("songCount")==0){
 
         }
+        //text = "{'offset':" + (page - 1) * pagesize + ",'limit':" + pagesize + ",'total':true}";
+         text = "{'offset': 1, 'total': true, 'limit': 20}";
+        String result =  NetEaseUtil.GetEncHtml("http://music.163.com/weapi/v1/discovery/recommend/songs", text, true);
 
+        System.out.println(result);
+        // 32000   1245746674311444
+       // System.out.printf( NetEaseUtil.GetUrlBySid("5863695511113457"));
     }
 }
